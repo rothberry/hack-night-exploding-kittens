@@ -1,5 +1,5 @@
-require_relative 'card'
-require_relative 'deck_data'
+require_relative './card'
+require_relative './deck_data'
 require 'pry'
 
 class Deck
@@ -9,19 +9,26 @@ class Deck
     @deck = []
   end
 
-  def create_deck
-    # i = 0
-    # deck_length = deck_data.length - 2
+  def create_deck_intial
     for x in deck_data do
-      if x[:title] == 'Exploding Kittens' 
-        add_card_type(x[:title], 2)
-      elsif x[:title] == 'Defuse'
+      if x[:title] != 'Exploding Kitten' && x[:title] != 'Defuse'
         add_card_type(x[:title], x[:num])
-      else
-
       end
-    end    
+    end
+  end
 
+  def show_deck
+    p @deck.map(&:title)
+  end
+
+  def create_deck_complete(num_of_players)
+    create_deck_intial
+    add_card_type(deck_data[10][:title], num_of_players - 1)
+    add_card_type(deck_data.last[:title], num_of_players)
+  end
+  
+  def shuffle_deck
+    @deck = @deck.shuffle
   end
 
   def add_card_type(title, num)
@@ -32,7 +39,6 @@ class Deck
 
 end
 
-# Pry.start
-x = Deck.new
-x.create_deck
-p x.deck.length
+# x = Deck.new
+# x.create_deck_intial
+# x.shuffle_deck

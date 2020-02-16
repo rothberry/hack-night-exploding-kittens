@@ -8,4 +8,16 @@ class Card
     # @action = action
   end
 
+  def play_defuse
+
+  end
+
+  def play_skip
+
+  end
+
+  def play_shuffle
+
+  end
+
 end
